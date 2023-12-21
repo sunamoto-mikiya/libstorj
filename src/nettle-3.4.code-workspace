@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "nettle-3.4",
+		"path": "../../../../Downloads/nettle-3.4"
+	},
+	{
+		"name": "libstorj",
+		"path": ".."
+	}
+],
+  "settings": {}
+}
