@@ -37,6 +37,7 @@ static size_t body_shard_send(void *buffer, size_t size, size_t nmemb,
             ctr_crypt(body->ctx->ctx, (nettle_cipher_func *)aes256_encrypt,
                       AES_BLOCK_SIZE, body->ctx->encryption_ctr, read_bytes,
                       (uint8_t *)buffer, (uint8_t *)clr_txt);
+             memcpy ( buffer, clr_txt, AES_BLOCK_SIZE *256);
         } else {
             memcpy(buffer, clr_txt, read_bytes);
         }
