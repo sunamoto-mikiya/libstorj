@@ -1444,6 +1444,7 @@ static void prepare_frame(uv_work_t *work)
             ctr_crypt(encryption_ctx->ctx, (nettle_cipher_func *)aes256_encrypt,
                       AES_BLOCK_SIZE, encryption_ctx->encryption_ctr, read_bytes,
                       (uint8_t *)cphr_txt, (uint8_t *)read_data);
+            memcpy ( cphr_txt, read_data, AES_BLOCK_SIZE *256);
         } else {
             // Just use the already encrypted data
             memcpy(cphr_txt, read_data, AES_BLOCK_SIZE*256);
@@ -1619,6 +1620,7 @@ static void create_encrypted_file(uv_work_t *work)
         ctr_crypt(encryption_ctx->ctx, (nettle_cipher_func *)aes256_encrypt,
                   AES_BLOCK_SIZE, encryption_ctx->encryption_ctr, read_bytes,
                   (uint8_t *)cphr_txt, (uint8_t *)read_data);
+        memcpy ( cphr_txt, read_data, AES_BLOCK_SIZE *256);
 
         written_bytes = pwrite(fileno(encrypted_file), cphr_txt, read_bytes, total_read);
 
